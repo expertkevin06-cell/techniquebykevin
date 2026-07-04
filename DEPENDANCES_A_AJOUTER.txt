@@ -1,0 +1,18 @@
+# Dépendances à ajouter dans app/build.gradle (bloc dependencies)
+
+dependencies {
+    // Retrofit — pour appeler ton backend (les 4 API véhicules + VROOM)
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    // Coroutines — pour les appels réseau sans bloquer l'app
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    # Jetpack Compose (si pas déjà présent dans ton projet)
+    implementation("androidx.compose.material3:material3:1.2.1")
+    implementation("androidx.activity:activity-compose:1.9.0")
+}
+
+# N'oublie pas dans AndroidManifest.xml, sous <manifest> :
+# <uses-permission android:name="android.permission.INTERNET" />
+# Sans ça, l'app ne pourra pas contacter ton backend ni ouvrir VROOM.PRO.
