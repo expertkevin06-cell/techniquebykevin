@@ -25,5 +25,9 @@ interface ApiService {
     @POST("api/vroom/interpreter")
     suspend fun interpreterTexteVroom(
         @Body requete: VroomRequest
-    ): VroomResult
+    ): VroomResult// Recherche des pannes connues via Gemini (recherche web)
+    @POST("api/pannes/pannes-connues")
+    suspend fun rechercherPannesConnues(
+        @Body requete: PannesRequest
+    ): PannesResult
 }
