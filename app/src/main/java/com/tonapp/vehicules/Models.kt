@@ -33,3 +33,27 @@ data class VroomResult(
 )
 
 data class VroomRequest(val texte: String)
+data class PannesRequest(
+    val marque: String,
+    val modele: String,
+    val motorisation: String? = null,
+    val annee: String? = null
+)
+
+data class PannesResult(
+    val vehicule_identifie: String?,
+    val pannes: List<Panne>,
+    val fiabilite_recherche: String?,
+    val avertissement: String?,
+    val sources_web_consultees: List<String>?
+)
+
+data class Panne(
+    val titre: String,
+    val systeme: String,
+    val frequence: String,
+    val km_apparition_typique: String?,
+    val description: String,
+    val nb_sources_recoupees: Int?,
+    val types_sources: List<String>?
+)
