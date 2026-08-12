@@ -1,19 +1,24 @@
 package com.tonapp.vehicules
 
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
-    // ⚠️ Remplace par l'adresse de ton serveur une fois en ligne.
-    // Pour tester en local depuis l'émulateur Android, utilise 10.0.2.2
-    // (c'est l'alias spécial de l'émulateur pour "localhost" de ton PC).
-    // Sur un vrai téléphone, mets l'adresse publique de ton serveur (ex: https://tonapi.com/)
-    
-private const val BASE_URL = "https://vehicule-backend.onrender.com/"
+    private const val BASE_URL = "https://vehicule-backend.onrender.com/"
+
+    private val okHttpClient = OkHttpClient.Builder()
+        .connectTimeout(90, TimeUnit.SECONDS)
+        .readTimeout(90, TimeUnit.SECONDS)
+        .writeTimeout(90, TimeUnit.SECONDS)
+        .build()
+
     val api: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
